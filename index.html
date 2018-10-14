@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vanilla Js Event Listener </title>
+</head>
+<body>
+    <h3>This is onclick is made with an object!!!</h3>
+    <h6>console.logs clicks</h6>
+    <button onclick="counter.inc()">protoType method of an object</button>
+    <script>
+        const counter = {
+            cnt : 0,
+            inc : function (){
+                this.cnt++;
+                console.log(counter.cnt);
+            }
+
+        };
+
+        const button = document.getElementsByTagName('button')[0];
+        button.addEventListener('click', counter.inc());
+
+        
+    </script>
+
+
+<hr>
+
+
+<h3>function with global scope variable</h3>
+<script type="text/javascript">
+    var clicks = 0;
+    function onClick() {
+        clicks += 1;
+        document.getElementById("clicks").innerHTML = clicks;
+    };
+</script>
+    <button type="button" onClick="onClick()">Click me</button>
+    <p>Clicks: <a id="clicks">0</a></p>
+
+<hr>
+
+<h3>Local scope variable  much better</h3>
+<button id="button1">alert clicks</button>
+<script>
+    var button2 = document.getElementById('button1');
+// First we create a function that has the local variable count inside it
+var parentFunction = function() {
+  var count = 0; // Local variable inside the function
+// Now we define a child function inside this function that will increment the count variable
+  var newFunc = function() {
+    count++; // child function increments the parent's variable
+    alert(count);
+  }
+  
+  // Finally we return this child function when we execute the parent function
+  return newFunc;
+  
+  
+  
+}
+button2.addEventListener('click', parentFunction()); // Invoking the parent function so it returns the child function as the argument to the event handler
+</script>
+</body>
+</html>
